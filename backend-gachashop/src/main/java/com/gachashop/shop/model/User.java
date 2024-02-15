@@ -1,67 +1,81 @@
 package com.gachashop.shop.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Size;
+import com.gachashop.shop.datatype.UserRole;
+import com.gachashop.shop.dto.request.LoginRequestDTO;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-
-@Entity(name = "user_details")
-public class User {
+@Entity
+@Table(name = "user_details", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"username"})
+})
+@Data
+@Accessors(chain = true)
+@NoArgsConstructor
+public class User implements Serializable, UserDetails {
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue
-    private Integer id;
-    @Size(min = 2, message = "Name should have atleast 2 characters")
-    //@JsonProperty("user_name")
-    private String name;
-    @Past(message = "Birth Date should be in the past")
-    //@JsonProperty("birth_date")
-    private LocalDate birthDate;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    protected User() {
+    @Column(name = "username", nullable = false)
+    private String username;
 
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "active")
+    private Boolean active;
+
+    @Column(name = "role")
+    private UserRole role;
+
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<GenshinAccount> genshinAccounts;
+
+    public User(LoginRequestDTO loginRequestDTO) {
+        this.username = loginRequestDTO.getUsername();
+        this.password = loginRequestDTO.getPassword();
     }
-
-    public User(Integer id, String name, LocalDate birthDate) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
 
     @Override
-    public String toString() {
-        return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(role.name()));
+        return authorities;
     }
 
-}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}
