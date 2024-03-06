@@ -55,7 +55,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserResponseDTO createUser(CreateUserRequestDTO user) {
-        logger.info("createUser" + user.getUsername());
+        logger.info("createUser " + user.getUsername());
         checkExistingUserByUsername(user.getUsername());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());

@@ -15,8 +15,14 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+
     @Autowired
     private IUserService iUserService;
+
+    @GetMapping("/test")
+    public Object createUser() {
+        return iUserService.getAllUser().toString();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable int id) throws Exception {

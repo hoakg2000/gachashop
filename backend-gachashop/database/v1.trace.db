@@ -1,0 +1,13 @@
+2024-02-15 15:19:30.601679+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_DETAILS" not found (this database is empty); SQL statement:
+insert into user_details (active,email,password,role,username,id) values (?,?,?,?,?,default) [42104-224]
+2024-02-15 15:21:58.847844+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_DETAILS" not found (this database is empty); SQL statement:
+insert into user_details (active,email,password,role,username,id) values (?,?,?,?,?,default) [42104-224]
+2024-02-15 15:33:51.477145+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USER_DETAILS" not found (this database is empty); SQL statement:
+select u1_0.id,u1_0.active,u1_0.email,u1_0.password,u1_0.role,u1_0.username from user_details u1_0 where u1_0.username=? [42104-224]
+2024-02-15 15:38:58.476660+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2024-02-15 17:25:59.589352+07:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

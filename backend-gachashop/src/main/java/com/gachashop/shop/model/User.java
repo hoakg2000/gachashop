@@ -35,8 +35,11 @@ public class User implements Serializable, UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "facebook", nullable = true)
+    private String facebook;
+
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
 
     @Column(name = "role")
     private UserRole role;
@@ -44,7 +47,7 @@ public class User implements Serializable, UserDetails {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<GenshinAccount> genshinAccounts;
 
     public User(LoginRequestDTO loginRequestDTO) {

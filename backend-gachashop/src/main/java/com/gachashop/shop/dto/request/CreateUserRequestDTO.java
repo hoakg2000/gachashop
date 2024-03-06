@@ -12,6 +12,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserRequestDTO extends LoginRequestDTO {
+    private String username;
     private String email;
     private String password;
 }

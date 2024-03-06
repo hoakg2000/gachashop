@@ -1,8 +1,6 @@
 package com.gachashop.shop.config;
 
 import com.gachashop.shop.config.jwt.JwtAuthenticationFilter;
-import com.gachashop.shop.datatype.UserRole;
-import com.gachashop.shop.model.User;
 import com.gachashop.shop.repository.IUserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,17 +27,15 @@ public class SecurityConfiguration {
         this.userRepository = userRepository;
         this.customerUserDetailsService = customerUserDetailsService;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode("admin");
-        User user = new User().setUsername("admin").setPassword(hashedPassword).setRole(UserRole.ADMIN);
-        userRepository.save(user);
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
+                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/register/confirm/**").hasRole("admin")
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/test").permitAll()
                         .anyRequest().authenticated()
                 ).formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
