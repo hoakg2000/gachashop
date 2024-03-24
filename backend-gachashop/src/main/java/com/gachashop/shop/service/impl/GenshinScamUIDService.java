@@ -39,7 +39,9 @@ public class GenshinScamUIDService implements IGenshinScamUIDService {
     public GenshinScamUID update(long id, GenshinScamUID genshinScamUID) {
         Optional<GenshinScamUID> findDuplicate = iGenshinScamUIDRepository.findByUid(genshinScamUID.getUid());
         if (findDuplicate.isEmpty()) {
-            return iGenshinScamUIDRepository.save(genshinScamUID);
+            GenshinScamUID existedScamUID = findDuplicate.get();
+            existedScamUID.setUid(genshinScamUID.getUid());
+            return iGenshinScamUIDRepository.save(existedScamUID);
         }
         return genshinScamUID;
     }
