@@ -1,6 +1,5 @@
 package com.gachashop.shop.service.impl;
 
-import com.gachashop.shop.ExceptionHandler.exception.NotFoundException;
 import com.gachashop.shop.model.GenshinScamUID;
 import com.gachashop.shop.repository.IGenshinScamUIDRepository;
 import com.gachashop.shop.service.IGenshinScamUIDService;
@@ -19,10 +18,7 @@ public class GenshinScamUIDService implements IGenshinScamUIDService {
     @Override
     public GenshinScamUID getById(long id) {
         Optional<GenshinScamUID> genshinScamUID = iGenshinScamUIDRepository.findById(id);
-        if (genshinScamUID.isEmpty()) {
-            throw new NotFoundException("Can't find");
-        }
-        return genshinScamUID.get();
+        return genshinScamUID.orElse(null);
     }
 
     @Override

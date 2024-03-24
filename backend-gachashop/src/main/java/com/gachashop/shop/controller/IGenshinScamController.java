@@ -2,13 +2,14 @@ package com.gachashop.shop.controller;
 
 import com.gachashop.shop.model.GenshinScamUID;
 import com.gachashop.shop.service.IGenshinScamUIDService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/scam")
+@RequestMapping("/GenshinScamUID")
 public class IGenshinScamController {
 
     @Autowired
@@ -25,12 +26,12 @@ public class IGenshinScamController {
     }
 
     @PostMapping("/create")
-    public GenshinScamUID createScam(@RequestBody GenshinScamUID genshinScamUID) {
+    public GenshinScamUID createScam(@Valid @RequestBody GenshinScamUID genshinScamUID) {
         return scamService.create(genshinScamUID);
     }
 
     @PutMapping("/{id}")
-    public GenshinScamUID updateScam(@PathVariable long id, @RequestBody GenshinScamUID genshinScamUID) {
+    public GenshinScamUID updateScam(@PathVariable long id, @Valid @RequestBody GenshinScamUID genshinScamUID) {
         return scamService.update(id, genshinScamUID);
     }
 
