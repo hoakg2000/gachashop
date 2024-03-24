@@ -17,6 +17,6 @@ public class GenshinScamUID {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "uid", nullable = false)
+    @Column(name = "uid", nullable = false, unique = true)
     private String uid;
 }

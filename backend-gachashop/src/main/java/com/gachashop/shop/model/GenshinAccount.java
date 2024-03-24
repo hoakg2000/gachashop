@@ -23,6 +23,9 @@ public class GenshinAccount implements Serializable {
     @Column(name = "adventure_rank", nullable = false)
     private int ar;
 
+    @Column(name = "price", nullable = false)
+    private int price;
+
     @OneToMany(mappedBy = "genshinAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<GenshinCharacterDetail> characters;
 
