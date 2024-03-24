@@ -20,7 +20,7 @@ public class ScammerController {
         return scammerService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<Scammer> getAllScammers() {
         return scammerService.getAll();
     }

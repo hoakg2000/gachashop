@@ -20,7 +20,7 @@ public class GameController {
         return gameService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<Game> getAllGames() {
         return gameService.getAll();
     }

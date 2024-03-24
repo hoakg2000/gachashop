@@ -20,7 +20,7 @@ public class IGenshinScamController {
         return scamService.getById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<GenshinScamUID> getAllScams() {
         return scamService.getAll();
     }
