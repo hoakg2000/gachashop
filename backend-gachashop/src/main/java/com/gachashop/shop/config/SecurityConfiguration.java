@@ -37,7 +37,9 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/user/test").permitAll()
                         .anyRequest().authenticated()
-                ).formLogin(Customizer.withDefaults())
+                ).formLogin(formLogin -> formLogin
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/h2-console", true))
                 .httpBasic(Customizer.withDefaults())
                 .headers((header) ->
                         header.frameOptions(

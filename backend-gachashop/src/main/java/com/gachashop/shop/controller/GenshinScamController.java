@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/GenshinScamUID")
-public class IGenshinScamController {
+@RequestMapping("/api/GenshinScamUID")
+public class GenshinScamController {
 
     @Autowired
     private IGenshinScamUIDService scamService;

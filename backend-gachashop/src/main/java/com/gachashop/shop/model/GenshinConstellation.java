@@ -29,4 +29,5 @@ public class GenshinConstellation {
 
     @Column(name = "detail", columnDefinition = "TEXT")
     private String detail;
+
 }

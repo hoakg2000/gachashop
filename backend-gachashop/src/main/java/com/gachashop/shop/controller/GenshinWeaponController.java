@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/weapons")
+@RequestMapping("/api/weapons")
 public class GenshinWeaponController {
 
     @Autowired
