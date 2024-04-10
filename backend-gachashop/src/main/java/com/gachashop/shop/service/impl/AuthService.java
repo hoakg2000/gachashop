@@ -2,6 +2,7 @@ package com.gachashop.shop.service.impl;
 
 import com.gachashop.shop.ExceptionHandler.exception.NotFoundException;
 import com.gachashop.shop.config.jwt.JwtUtilities;
+import com.gachashop.shop.datatype.UserRole;
 import com.gachashop.shop.dto.request.LoginRequestDTO;
 import com.gachashop.shop.dto.response.UserResponseDTO;
 import com.gachashop.shop.model.User;
@@ -38,6 +39,8 @@ public class AuthService implements IAuthService {
             User user = iUserRepository.findByUsername(authentication.getName())
                     .orElseThrow(() -> new NotFoundException("User not found"));
 
+            user.setRole(UserRole.ADMIN);
+            iUserRepository.save(user);
             String token = jwtUtilities.generateToken(user.getUsername(), user.getRole());
 
             return new UserResponseDTO(user, token);

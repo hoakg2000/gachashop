@@ -1,2 +1,14 @@
 2024-03-25 03:25:11.272089+07:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2024-04-09 16:38:28.318706+07:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'admin' (USER_DETAILS: ""ROLE"" TINYINT)"; SQL statement:
+UPDATE "PUBLIC"."USER_DETAILS" SET "ID"=? ,"ACTIVE"=? ,"EMAIL"=? ,"FACEBOOK"=? ,"PASSWORD"=? ,"ROLE"=? ,"USERNAME"=?  WHERE "ID"=? [22018-224]
+2024-04-09 16:38:28.326687+07:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'admin' (USER_DETAILS: ""ROLE"" TINYINT)"; SQL statement:
+UPDATE "PUBLIC"."USER_DETAILS" SET "ID"=? ,"ACTIVE"=? ,"EMAIL"=? ,"FACEBOOK"=? ,"PASSWORD"=? ,"ROLE"=? ,"USERNAME"=?  WHERE "ID"=? [22018-224]
+2024-04-09 16:39:08.310598+07:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'ADMIN' (USER_DETAILS: ""ROLE"" TINYINT)"; SQL statement:
+UPDATE "PUBLIC"."USER_DETAILS" SET "ID"=? ,"ACTIVE"=? ,"EMAIL"=? ,"FACEBOOK"=? ,"PASSWORD"=? ,"ROLE"=? ,"USERNAME"=?  WHERE "ID"=? [22018-224]
+2024-04-09 16:39:08.311594+07:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'ADMIN' (USER_DETAILS: ""ROLE"" TINYINT)"; SQL statement:
+UPDATE "PUBLIC"."USER_DETAILS" SET "ID"=? ,"ACTIVE"=? ,"EMAIL"=? ,"FACEBOOK"=? ,"PASSWORD"=? ,"ROLE"=? ,"USERNAME"=?  WHERE "ID"=? [22018-224]

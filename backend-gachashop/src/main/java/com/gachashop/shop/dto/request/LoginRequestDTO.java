@@ -13,9 +13,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class LoginRequestDTO {
     @NotNull
-    @Size(min = 6, max = 15)
+    @Size(min = 5, max = 15)
     private String username;
+
     @NotNull
-    @Size(min = 6, max = 15)
     private String password;
 }

@@ -32,10 +32,10 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
-                        .requestMatchers(HttpMethod.POST, "/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/register/confirm/**").hasRole("admin")
-                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/user/test").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/register/confirm/**").hasRole("admin")
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/user/test").permitAll()
                         .anyRequest().authenticated()
                 ).formLogin(formLogin -> formLogin
                         .loginProcessingUrl("/login")

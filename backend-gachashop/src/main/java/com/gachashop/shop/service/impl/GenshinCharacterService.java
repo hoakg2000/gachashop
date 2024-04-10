@@ -3,6 +3,7 @@ package com.gachashop.shop.service.impl;
 import com.gachashop.shop.ExceptionHandler.exception.NotFoundException;
 import com.gachashop.shop.ExceptionHandler.exception.UniqueEntityException;
 import com.gachashop.shop.model.GenshinCharacter;
+import com.gachashop.shop.model.GenshinConstellation;
 import com.gachashop.shop.repository.IGenshinCharacterRepository;
 import com.gachashop.shop.service.IGenshinCharacterService;
 import jakarta.validation.Valid;
@@ -54,5 +55,19 @@ public class GenshinCharacterService implements IGenshinCharacterService {
     public void delete(long id) throws NotFoundException {
         GenshinCharacter characterToDelete = getById(id); // Ensure character exists before deleting
         genshinCharacterRepository.delete(characterToDelete);
+    }
+
+    @Override
+    public GenshinCharacter addConstellation(Long id, GenshinConstellation genshinConstellation) {
+        GenshinCharacter genshinCharacter = this.getById(id);
+        genshinCharacter.getConstellations().add(genshinConstellation);
+        return genshinCharacterRepository.save(genshinCharacter);
+    }
+
+    @Override
+    public GenshinCharacter removeConstellation(Long characterId, Long constellationId) {
+        GenshinCharacter genshinCharacter = this.getById(characterId);
+        genshinCharacter.getConstellations().removeIf(constellation -> constellation.getId().equals(constellationId));
+        return genshinCharacterRepository.save(genshinCharacter);
     }
 }

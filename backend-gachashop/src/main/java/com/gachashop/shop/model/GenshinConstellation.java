@@ -1,6 +1,8 @@
 package com.gachashop.shop.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -21,8 +23,11 @@ public class GenshinConstellation {
     @JoinColumn(name = "character_id", nullable = false)
     private GenshinCharacter genshinCharacter;
 
+    @NotNull
+    @Size(min = 3, max = 128)
     @Column(name = "name", nullable = false)
     private String name;
+
 
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
